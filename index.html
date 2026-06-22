@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScamShield AI - Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card glass-card">
+            <div class="logo">ScamShield <span>AI</span></div>
+            <h2 id="auth-title">Welcome Back</h2>
+            <p id="auth-subtitle">Login to protect yourself from cyber threats.</p>
+            
+            <form id="auth-form">
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="you@example.com">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="cta-btn" id="submit-btn">Login</button>
+            </form>
+            
+            <p class="switch-text">
+                <span id="switch-text">Don't have an account?</span>
+                <a href="#" id="switch-link">Register</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
