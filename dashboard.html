@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScamShield AI - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+    <nav class="navbar glass-card">
+        <div class="logo">ScamShield <span>AI</span></div>
+        <div class="nav-right">
+            <button class="theme-toggle" id="theme-toggle">🌙</button>
+            <button class="logout-btn" id="logout-btn">Logout</button>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Scanner Column -->
+        <div class="scanner-section">
+            <div class="glass-card scan-card">
+                <h2>Threat Scanner</h2>
+                <div class="tabs">
+                    <button class="tab active" data-tab="url">URL</button>
+                    <button class="tab" data-tab="email">Email</button>
+                    <button class="tab" data-tab="sms">SMS</button>
+                </div>
+                
+                <textarea id="scan-input" placeholder="Paste a URL here..."></textarea>
+                <button class="cta-btn" id="scan-btn">Scan for Threats</button>
+
+                <div class="result-area hidden" id="result-area">
+                    <div class="risk-meter-wrap">
+                        <div class="risk-label">AI Risk Score</div>
+                        <div class="risk-score" id="risk-score">0</div>
+                        <div class="risk-meter">
+                            <div class="risk-fill" id="risk-fill"></div>
+                        </div>
+                    </div>
+                    <div class="status-badge" id="status-badge">Analyzing...</div>
+                    <div class="details" id="scan-details"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Column -->
+        <div class="history-section">
+            <div class="glass-card history-card">
+                <h2>Scan History</h2>
+                <div class="history-list" id="history-list">
+                    <div class="empty-state">Your recent scans will appear here.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
