@@ -3,41 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScamShield AI - Login</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>My DSAI Compiler</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #1e1e2e; color: white; padding: 20px; }
+        h2 { text-align: center; color: #89b4fa; }
+        .container { max-width: 800px; margin: auto; background: #313244; padding: 20px; border-radius: 10px; }
+        textarea { width: 100%; height: 200px; background: #11111b; color: #a6e3a1; border: 1px solid #45475a; border-radius: 5px; padding: 10px; font-family: monospace; font-size: 16px; }
+        button { background-color: #89b4fa; color: black; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; margin-top: 15px; border-radius: 5px; font-weight: bold; }
+        button:hover { background-color: #b4befe; }
+        h3 { margin-top: 20px; color: #f9e2af; }
+        pre { background: #11111b; padding: 15px; border-radius: 5px; color: #f38ba8; white-space: pre-wrap; word-wrap: break-word; }
+    </style>
 </head>
 <body>
-    <div class="bg-blobs">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
+    <div class="container">
+        <h2>🐍 My DSAI Python Compiler</h2>
+        
+        <p>Yahan apna Python code likho:</p>
+        <textarea id="code" placeholder="print('Hello DSAI!')"></textarea>
+        <br>
+        <button onclick="runCode()">Run Code ▶</button>
+
+        <h3>Output:</h3>
+        <pre id="output">Code run karne ke liye upar button dabao...</pre>
     </div>
 
-    <div class="auth-container">
-        <div class="auth-card glass-card">
-            <div class="logo">ScamShield <span>AI</span></div>
-            <h2 id="auth-title">Welcome Back</h2>
-            <p id="auth-subtitle">Login to protect yourself from cyber threats.</p>
+    <!-- Backend se connect karne ke liye JavaScript -->
+    <script>
+        async function runCode() {
+            const code = document.getElementById('code').value;
+            const outputBox = document.getElementById('output');
             
-            <form id="auth-form">
-                <div class="input-group">
-                    <label>Email Address</label>
-                    <input type="email" id="email" required placeholder="you@example.com">
-                </div>
-                <div class="input-group">
-                    <label>Password</label>
-                    <input type="password" id="password" required placeholder="••••••••">
-                </div>
-                <button type="submit" class="cta-btn" id="submit-btn">Login</button>
-            </form>
+            outputBox.innerText = "Running... Please wait...";
             
-            <p class="switch-text">
-                <span id="switch-text">Don't have an account?</span>
-                <a href="#" id="switch-link">Register</a>
-            </p>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+            try {
+                // Ye backend ko code bhejega
+                const response = await fetch('http://localhost:5000/run', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code: code })
+                });
+                
+                const data = await response.json();
+                
+                // Agar output mile toh dikhao, agar error ho toh error dikhao
+                if(data.output) {
+                    outputBox.innerText = data.output;
+                } else if(data.error) {
+                    outputBox.innerText = "Error:\n" + data.error;
+                }
+            } catch (error) {
+                outputBox.innerText = "Server se connect nahi ho pa raha. Kya backend chalu hai?";
+            }
+        }
+    </script>
 </body>
 </html>
